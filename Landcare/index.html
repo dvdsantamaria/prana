@@ -58,12 +58,17 @@
 
     header {
       background: #ffffff;
+      border-bottom: 1px solid #eee;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .header-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
       padding: 1rem 3rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      font-family: 'DM Sans', sans-serif;
     }
 
     .brand {
@@ -139,7 +144,7 @@
     }
 
     @media (max-width: 600px) {
-      header {
+      .header-inner {
         padding: 1rem 1.5rem;
       }
 
@@ -391,20 +396,22 @@
 
 <body>
   <header>
-    <div class="brand">
-      <img src="images/logo.png" alt="PRANA" class="header-logo">
-      <div class="brand-text">
-        <span class="brand-title">PRANA Landcare Services</span>
-        <span class="brand-subtitle">Bushcare and gardening</span>
+    <div class="header-inner">
+      <div class="brand">
+        <img src="images/logo.png" alt="PRANA" class="header-logo">
+        <div class="brand-text">
+          <span class="brand-title">PRANA Landcare Services</span>
+          <span class="brand-subtitle">Bushcare and gardening</span>
+        </div>
       </div>
-    </div>
 
-    <div class="contact">
-      <div class="contact-info">
-        <span class="contact-label">Direct Line</span>
-        <div class="contact-name">Alasdair</div>
+      <div class="contact">
+        <div class="contact-info">
+          <span class="contact-label">Direct Line</span>
+          <div class="contact-name">Alasdair</div>
+        </div>
+        <a href="tel:0488391146" class="contact-btn">Call 0488 391 146</a>
       </div>
-      <a href="tel:0488391146" class="contact-btn">Call 0488 391 146</a>
     </div>
   </header>
 
