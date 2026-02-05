@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PRANA Landcare Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f7f6;
+      --card: #ffffff;
+      --text: #24332d;
+      --muted: #7a8781;
+      --accent: #69b76f;
+      --accent-strong: #4da65a;
+      --field-bg: #dfe7e4;
+      --border-color: #e2e8e5;
+      --shadow-sm: 0 8px 20px rgba(18, 30, 22, 0.08);
+      --shadow: 0 24px 50px rgba(18, 30, 22, 0.14);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --maxw: 980px;
+      --space-1: 6px;
+      --space-2: 12px;
+      --space-3: 18px;
+      --space-4: 24px;
+      --space-5: 32px;
+      --space-6: 44px;
+      --space-7: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #f9faf9 0%, var(--bg) 55%, #eef3f1 100%);
+      color: var(--text);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: var(--space-6) var(--space-4) var(--space-7);
+    }
+
+    header {
+      background: #ffffff;
+      padding: 1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-logo {
+      width: 50px;
+      height: auto;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #1a2e1a;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .contact-info {
+      text-align: right;
+    }
+
+    .contact-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: #4CAF50;
+      text-transform: uppercase;
+    }
+
+    .contact-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #1a2e1a;
+    }
+
+    .contact-btn {
+      background: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 6px rgba(76, 175, 80, 0.2);
+    }
+
+    .contact-btn:hover {
+      background: #43a047;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 1rem 1.5rem;
+      }
+
+      .contact-info {
+        display: none;
+      }
+
+      .brand-title {
+        font-size: 1.1rem;
+      }
+
+      .header-logo {
+        width: 40px;
+      }
+    }
+
+    .image-strip {
+      position: relative;
+      margin: var(--space-6) 0 var(--space-5);
+    }
+
+    .image-strip::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 140px;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(245, 247, 246, 0) 0%, var(--bg) 70%);
+      pointer-events: none;
+    }
+
+    .strip-window {
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      background: #eef2ef;
+      padding: var(--space-3) 0;
+    }
+
+    .strip-track {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      width: max-content;
+      animation: scroll 70s linear infinite;
+      padding: 0 var(--space-3);
+    }
+
+    .strip-track>* {
+      height: 320px;
+      width: auto;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-sm);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .strip-track img {
+      background: #d7dfdb;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 780px) {
+      .strip-track>* {
+        height: 240px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .strip-track {
+        animation: none;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow);
+      padding: var(--space-4);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-1);
+      padding: 0.85rem 1.4rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+      background: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(58, 122, 72, 0.2);
+      text-align: center;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: var(--accent-strong);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 24px rgba(58, 122, 72, 0.25);
+      outline: none;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    form {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .form-grid {
+      display: grid;
+      gap: var(--space-3);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @media (max-width: 700px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: var(--space-1);
+      display: inline-block;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      border: 1px solid transparent;
+      background: var(--field-bg);
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+      transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #b7c8c1;
+      background: #edf2ef;
+      box-shadow: 0 0 0 3px rgba(105, 183, 111, 0.2);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    fieldset {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: var(--space-3);
+      background: #f7f9f8;
+    }
+
+    legend {
+      padding: 0 var(--space-2);
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .checkbox-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      margin-top: var(--space-2);
+      align-items: center;
+    }
+
+    .checkbox-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .checkbox-row label:hover {
+      color: var(--accent-strong);
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      cursor: pointer;
+      accent-color: var(--accent);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      align-items: center;
+      margin-top: var(--space-2);
+      text-align: center;
+    }
+
+    .form-actions .btn {
+      min-width: 280px;
+    }
+
+    @media (max-width: 600px) {
+      .form-actions .btn {
+        width: 100%;
+      }
+    }
+
+    .footnote {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 480px;
+    }
+
+    .footnote a {
+      color: var(--text);
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">
+      <img src="images/logo.png" alt="PRANA" class="header-logo">
+      <div class="brand-text">
+        <span class="brand-title">PRANA Landcare Services</span>
+        <span class="brand-subtitle">Bushcare and gardening</span>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-info">
+        <span class="contact-label">Direct Line</span>
+        <div class="contact-name">Alasdair</div>
+      </div>
+      <a href="tel:0488391146" class="contact-btn">Call 0488 391 146</a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <section class="image-strip" aria-label="Landcare and gardening image slider">
+      <div class="strip-window">
+        <div class="strip-track">
+          <img src="images/20260113_135213.jpg" alt="Landcare work scene 1">
+          <img src="images/20260116_144049.jpg" alt="Landcare work scene 2">
+          <img src="images/IMG_20250831_104658.jpg" alt="Landcare work scene 3">
+          <img src="images/IMG_20250831_110357.jpg" alt="Landcare work scene 4">
+          <img src="images/IMG_20250831_122759.jpg" alt="Landcare work scene 5">
+          <img src="images/IMG_20250831_125431.jpg" alt="Landcare work scene 6">
+          <img src="images/IMG_20251125_105216.jpg" alt="Landcare work scene 7">
+          <img src="images/IMG_20251210_152721.jpg" alt="Landcare work scene 8">
+          <img src="images/IMG_20251210_201333.jpg" alt="Landcare work scene 9">
+          <img src="images/IMG_20251210_201349.jpg" alt="Landcare work scene 10">
+          <img src="images/IMG_20251226_125215.jpg" alt="Landcare work scene 11">
+          <img src="images/IMG_20251227_182445.jpg" alt="Landcare work scene 12">
+          <img src="images/logo.png" alt="PRANA logo">
+
+          <img src="images/20260113_135213.jpg" alt="Landcare work scene 1">
+          <img src="images/20260116_144049.jpg" alt="Landcare work scene 2">
+          <img src="images/IMG_20250831_104658.jpg" alt="Landcare work scene 3">
+          <img src="images/IMG_20250831_110357.jpg" alt="Landcare work scene 4">
+          <img src="images/IMG_20250831_122759.jpg" alt="Landcare work scene 5">
+          <img src="images/IMG_20250831_125431.jpg" alt="Landcare work scene 6">
+          <img src="images/IMG_20251125_105216.jpg" alt="Landcare work scene 7">
+          <img src="images/IMG_20251210_152721.jpg" alt="Landcare work scene 8">
+          <img src="images/IMG_20251210_201333.jpg" alt="Landcare work scene 9">
+          <img src="images/IMG_20251210_201349.jpg" alt="Landcare work scene 10">
+          <img src="images/IMG_20251226_125215.jpg" alt="Landcare work scene 11">
+          <img src="images/IMG_20251227_182445.jpg" alt="Landcare work scene 12">
+          <img src="images/logo.png" alt="PRANA logo">
+        </div>
+      </div>
+    </section>
+
+    <section id="enquiry-form" class="card">
+      <h2>Enquiry form</h2>
+
+      <form method="post" action="https://submit-form.com/PJtjhcpWt">
+        <input type="hidden" name="form_type" value="landcare_enquiry">
+        <input type="hidden" name="source_page" value="prana_landcare_landing">
+
+        <div class="form-grid">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required>
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div>
+            <label for="location">Location</label>
+            <input id="location" name="location" type="text" required>
+          </div>
+        </div>
+
+        <div>
+          <label for="property_size">Property size</label>
+          <select id="property_size" name="property_size" required>
+            <option value="" selected disabled>Select one</option>
+            <option value="small">Small</option>
+            <option value="medium">Medium</option>
+            <option value="large">Large</option>
+            <option value="not_sure">Not sure</option>
+          </select>
+        </div>
+
+        <fieldset>
+          <legend>Service type</legend>
+          <div class="checkbox-row">
+            <label for="service-gardening">
+              <input id="service-gardening" type="checkbox" name="service_type[]" value="Gardening">
+              Gardening
+            </label>
+            <label for="service-bushland">
+              <input id="service-bushland" type="checkbox" name="service_type[]" value="Bushland management">
+              Bushland management
+            </label>
+            <label for="service-both">
+              <input id="service-both" type="checkbox" name="service_type[]" value="Both">
+              Both
+            </label>
+          </div>
+        </fieldset>
+
+        <div>
+          <label for="details">Details of work you want done</label>
+          <textarea id="details" name="details" required
+            placeholder="Tell me what you want done, timing, access details, and anything useful to know."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn" type="submit">Send enquiry</button>
+          <div class="footnote">Prefer a call? Ring Alasdair on <a href="tel:0488391146">0488 391 146</a></div>
+        </div>
+      </form>
+    </section>
+  </div>
+</body>
+
+</html>

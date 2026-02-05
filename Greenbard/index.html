@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Hire Enquiry (Performance Events)</title>
+  <meta name="description"
+    content="Private hire performance events enquiry form. Submit an enquiry or call Alasdair on 0488 391 146." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --max: 980px;
+      --pad: 20px;
+      --radius: 14px;
+      --border: #e7e7e7;
+      --text: #1b1b1b;
+      --muted: #666;
+      --bg: #fafafa;
+      --card: #ffffff;
+      --accent: #2f6b3b;
+      --facebook: #1877F2;
+      --facebook-hover: #166fe5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.35;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px var(--pad) 60px;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .header-logo {
+      width: 46px;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a2e1a;
+      letter-spacing: -0.01em;
+    }
+
+    .brand-subtitle {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .contact {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .contact-info {
+      text-align: right;
+    }
+
+    .contact-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .contact-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a2e1a;
+    }
+
+    .contact-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.65rem 1.25rem;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 4px 6px rgba(47, 107, 59, 0.2);
+    }
+
+    .contact-btn:hover {
+      background: #24522d;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 1rem 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .contact-info {
+        display: none;
+      }
+
+      .brand-title {
+        font-size: 1.1rem;
+      }
+
+      .header-logo {
+        width: 36px;
+      }
+
+      .btnFacebook {
+        width: 100%;
+        order: 3;
+      }
+    }
+
+    /* Slider strip (no JS) */
+    .coverStrip {
+      margin: 18px 0 18px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #ddd;
+      position: relative;
+    }
+
+    .coverStripTrack {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .coverStripTrack::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .coverStripTrack::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 999px;
+    }
+
+    .coverItem {
+      flex: 0 0 78%;
+      max-width: 78%;
+      height: 240px;
+      border-radius: 12px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      position: relative;
+      background: #cfcfcf;
+    }
+
+    .coverItem img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .coverFade {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+          rgba(250, 250, 250, 0) 0%,
+          rgba(250, 250, 250, 0) 70%,
+          rgba(250, 250, 250, 0.92) 100%);
+    }
+
+    .heroText {
+      text-align: center;
+      margin: 8px 0 10px;
+    }
+
+    .heroText p {
+      margin: 6px 0;
+    }
+
+    .ctaRow {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+
+    .callout {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .callout strong {
+      font-size: 16px;
+    }
+
+    .callout span {
+      color: var(--muted);
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btnSecondary {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+    }
+
+    .btnSecondary:hover {
+      background: #f5f5f5;
+    }
+
+    /* Facebook Button Style */
+    .btnFacebook {
+      border: 1px solid var(--facebook);
+      background: var(--facebook);
+      color: #fff;
+    }
+
+    .btnFacebook:hover {
+      background: var(--facebook-hover);
+      border-color: var(--facebook-hover);
+    }
+
+    .btnFacebook svg {
+      flex-shrink: 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 20px;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 15px;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .checks {
+      display: grid;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    .footnote {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .smallNote {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (min-width: 720px) {
+      .ctaRow {
+        grid-template-columns: 1.2fr 0.8fr;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: auto;
+      }
+
+      .grid2 {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .coverItem {
+        flex: 0 0 46%;
+        max-width: 46%;
+        height: 280px;
+      }
+    }
+
+    .ctaFacebook {
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-text">
+        <span class="brand-title">ALASDAIR GREENBARD</span>
+        <span class="brand-subtitle">Private Hire Enquiry · Performance events</span>
+      </div>
+    </div>
+
+    <div class="contact">
+      <div class="contact-info">
+        <span class="contact-label">Direct Line</span>
+        <div class="contact-name">Alasdair</div>
+      </div>
+      <a href="tel:0488391146" class="contact-btn">Call 0488 391 146</a>
+    </div>
+
+    <a class="btn btnFacebook" href="https://www.facebook.com/share/p/17zQwSqnih/" target="_blank"
+      rel="noopener noreferrer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+      </svg>
+      View event on Facebook
+    </a>
+  </header>
+
+  <main class="wrap">
+
+    <!-- Slider strip: put your images in /images and list them here -->
+    <section class="coverStrip" aria-label="Performance event images">
+      <div class="coverStripTrack">
+        <div class="coverItem">
+          <img src="images/Greenbard sufi LLB Shot.jpg" alt="Performance event photo 1" />
+        </div>
+        <div class="coverItem">
+          <img src="images/IMG_20251124_105336.jpg" alt="Performance event photo 2" />
+        </div>
+        <div class="coverItem">
+          <img src="images/IMG_20251215_194330.jpg" alt="Performance event photo 3" />
+        </div>
+        <div class="coverItem">
+          <img src="images/IMG_20251222_201525.jpg" alt="Performance event photo 4" />
+        </div>
+        <div class="coverItem">
+          <img src="images/FB_IMG_1723974218283.jpg" alt="Performance event photo 5" />
+        </div>
+        <div class="coverItem">
+          <img src="images/FB_IMG_1726477157677 cropped.jpg" alt="Performance event photo 6" />
+        </div>
+        <div class="coverItem">
+          <img src="images/553755740_1715846689013151_5758933232263378298_n.jpg" alt="Performance event photo 7" />
+        </div>
+      </div>
+      <div class="coverFade" aria-hidden="true"></div>
+    </section>
+
+    <section class="card" id="enquiry-form" aria-labelledby="form-title">
+      <h2 id="form-title">Enquiry form</h2>
+
+      <!-- IMPORTANT: replace the action URL with the real submit-form endpoint for this form -->
+      <form action="https://submit-form.com/REPLACE_WITH_ENDPOINT" method="post">
+        <input type="hidden" name="form_type" value="private_hire_enquiry" />
+        <input type="hidden" name="source_page" value="performance_private_hire_landing" />
+
+        <div class="grid2">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div>
+            <label for="location">Location</label>
+            <input id="location" name="location" type="text" autocomplete="address-level2" required />
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div>
+            <label for="event_date">Event date</label>
+            <input id="event_date" name="event_date" type="date" />
+            <div class="smallNote">If you are not sure yet, leave it blank and add details below.</div>
+          </div>
+
+          <div>
+            <label for="event_type">Event type</label>
+            <select id="event_type" name="event_type" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="performance">Performance</option>
+              <option value="workshop">Workshop</option>
+              <option value="corporate">Corporate event</option>
+              <option value="private_party">Private party</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="attendance">Estimated audience size</label>
+          <select id="attendance" name="attendance">
+            <option value="" selected disabled>Select one (optional)</option>
+            <option value="1_20">1 to 20</option>
+            <option value="21_50">21 to 50</option>
+            <option value="51_100">51 to 100</option>
+            <option value="100_plus">100+</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="details">Details</label>
+          <textarea id="details" name="details"
+            placeholder="Share the venue, timing, vibe, any special requests, and what you want to achieve..."
+            required></textarea>
+        </div>
+
+        <button class="btn" type="submit">Send enquiry</button>
+
+        <p class="footnote">
+          Prefer a call? Ring Alasdair on <a href="tel:0488391146">0488 391 146</a>
+        </p>
+      </form>
+    </section>
+  </main>
+</body>
+
+</html>
